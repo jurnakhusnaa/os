@@ -167,7 +167,7 @@ cat > /etc/xray/config.json << END
        "streamSettings":{
            "network": "ws",
            "wsSettings": {
-               "path": "/trojan"
+               "path": "/trojan-ws"
             }
          }
      },
