@@ -38,7 +38,7 @@ echo -e "[INFO] Download & pasang Bot..."
 wget -q https://raw.githubusercontent.com/jurnakhusnaa/os/master/bot/kyt.zip
 unzip -o kyt.zip -d /usr/bin/
 cd /usr/bin/kyt
-/usr/bin/venv/bin/pip install -r requirements.txt
+pip install -r requirements.txt
 cd
 
 # === Konfigurasi bot ===
