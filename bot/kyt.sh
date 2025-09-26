@@ -49,10 +49,7 @@ unzip -o kyt.zip -d /usr/bin/
 
 # Instal dependensi Python
 echo -e "[INFO] Menginstal dependensi Python dari requirements.txt..."
-cd /usr/bin/kyt
-# Menggunakan pip3 secara eksplisit
-/usr/bin/pip3 install -r requirements.txt
-cd
+sudo pip3 install --break-system-packages -r /usr/bin/kyt/requirements.txt
 
 # === Konfigurasi bot ===
 clear
