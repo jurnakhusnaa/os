@@ -17,22 +17,13 @@ dpkg --configure -a
 echo -e "[INFO] Menghapus service lama..."
 systemctl stop kyt 2>/dev/null
 rm -f /etc/systemd/system/kyt.service
-rm -rf /usr/bin/kyt /usr/bin/bot /usr/bin/kyt.* /usr/bin/bot.* /root/kyt.zip /root/bot.zip /usr/bin/venv
+rm -rf /usr/bin/kyt /usr/bin/bot /usr/bin/kyt.* /usr/bin/bot.* /root/kyt.zip /root/bot.zip
 
 # === Update dan Install dependencies ===
 echo -e "[INFO] Update dan install package penting..."
-apt update && apt upgrade -y
-apt install -y unzip neofetch python3 python3-pip git wget curl figlet lolcat software-properties-common
-apt install python3.12-venv
-# === Setup Python virtual environment ===
-echo -e "[INFO] Membuat virtual environment Python..."
-cd /usr/bin
-python3 -m venv venv
-source /usr/bin/venv/bin/activate
-pip install --upgrade pip
-pip install -r kyt/requirements.txt
-pip install kyt/requests
-pip install telethon paramiko
+sudo apt-get update > /dev/null 2>&1
+apt install zip unzip -y
+sudo apt-get install -y python3 python3-pip git
 
 # === Download dan pasang bot ===
 echo -e "[INFO] Download & pasang bot..."
@@ -43,7 +34,7 @@ chmod +x /usr/bin/*
 rm -rf bot bot.zip
 
 # === Download dan pasang kyt ===
-echo -e "[INFO] Download & pasang kyt..."
+echo -e "[INFO] Download & pasang Bot..."
 wget -q https://raw.githubusercontent.com/jurnakhusnaa/os/master/bot/kyt.zip
 unzip -o kyt.zip -d /usr/bin/
 cd /usr/bin/kyt
@@ -75,24 +66,16 @@ EOF
 
 echo "#bot# $bottoken $admin" > /etc/bot/.bot.db
 
-# === Buat systemd service dengan venv dan env support ===
+# === Buat systemd service untuk bot ===
 cat >/etc/systemd/system/kyt.service <<EOF
-[Unit]
-Description=App Bot kyt Service
-After=network.target network-online.target systemd-user-sessions.service time-sync.target
-Wants=network-online.target
+Unit]
+Description=Kyt Bot V2
+After=network.target
 
 [Service]
-ExecStartPre=/bin/sleep 5
-ExecStart=/bin/bash -c 'source /usr/bin/venv/bin/activate && python3 -m kyt'
+WorkingDirectory=/usr/bin/bot
+ExecStart=/usr/bin/python3 -m bot
 Restart=always
-User=root
-Environment=PATH=/usr/bin:/usr/local/bin:/usr/bin/venv/bin
-Environment=PYTHONUNBUFFERED=1
-EnvironmentFile=/usr/bin/kyt/var.txt
-WorkingDirectory=/usr/bin
-StandardOutput=journal
-StandardError=journal
 
 [Install]
 WantedBy=multi-user.target
