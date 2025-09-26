@@ -73,8 +73,8 @@ Description=Kyt Bot V2
 After=network.target
 
 [Service]
-WorkingDirectory=/usr/bin/bot
-ExecStart=/usr/bin/python3 -m bot
+WorkingDirectory=/usr/bin/kyt
+ExecStart=/usr/bin/python3 -m kyt
 Restart=always
 
 [Install]
