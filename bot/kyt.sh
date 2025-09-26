@@ -72,8 +72,11 @@ sudo systemctl enable kyt.service
 sudo systemctl start kyt.service
 
 # --- 8. FINALISASI ---
+
 rm -f /tmp/bot.zip
 rm -rf /tmp/bot
+rm -f /tmp/kyt.zip
+rm -rf /tmp/kyt
 clear
 echo "================================================"
 echo "      INSTALASI ULANG BERHASIL"
