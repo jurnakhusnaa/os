@@ -4,7 +4,7 @@
 # By NEWBIE VPN 
 # ==================================================
 # Link Hosting Kalian
-REPO="https://v4.serverpremium.web.id:81/os/"
+REPO="https://raw.githubusercontent.com/jurnakhusnaa/os/master/"
 
 # initialisasi var
 export DEBIAN_FRONTEND=noninteractive
